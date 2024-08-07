@@ -1,0 +1,12 @@
+@model List<CelebrityGuessingGame.Models.Celebrity>
+
+<h1>Select a Celebrity</h1>
+<form method="post" asp-controller="Game" asp-action="SaveScore">
+    <select id="celebrities" name="celebrity">
+        @foreach (var celebrity in Model)
+        {
+            <option value="@celebrity.Name">@celebrity.Name</option>
+        }
+    </select>
+    <button type="submit">Start Game</button>
+</form>
