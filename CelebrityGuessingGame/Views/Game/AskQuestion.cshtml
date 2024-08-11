@@ -1,0 +1,6 @@
+<h1>@TempData["CurrentQuestion"]</h1>
+
+    <form method="post" asp-controller="Game" asp-action="AnswerQuestion">
+    <button type="submit" name="answer" value="Yes">Yes</button>
+    <button type="submit" name="answer" value="No">No</button>
+    </form>

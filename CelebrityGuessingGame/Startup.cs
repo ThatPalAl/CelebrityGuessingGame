@@ -9,6 +9,7 @@ public class Startup
         services.AddHttpClient<ApiService>();
         services.AddDbContext<DatabaseService>(options =>
             options.UseSqlite("Data Source=CelebrityGuessingGame.db"));
+        
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
