@@ -1,6 +1,8 @@
+using CelebrityGuessingGame.Models;
+using CelebrityGuessingGame.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
+namespace CelebrityGuessingGame.Controllers;
 
 public class GameController : Controller
 {
@@ -15,9 +17,15 @@ public class GameController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var celebrities = await _apiService.GetCelebritiesAsync("YOUR_API_KEY_HERE");
+        var celebrities = await _apiService.GetCelebritiesAsync("ik8nOg4Czi2xqjRUZiDYAg==G1aVlZ7TRMJnRVrY");
+        if (celebrities == null || !celebrities.Any())
+        {
+            ViewData["ErrorMessage"] = "No celebrities were found.";
+            return View("Error");
+        }
         return View(celebrities);
     }
+
 
     [HttpPost]
     public IActionResult SaveScore(string name, int score)

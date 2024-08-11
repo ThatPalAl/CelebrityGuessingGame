@@ -1,8 +1,11 @@
+using CelebrityGuessingGame.Models;
 using Microsoft.EntityFrameworkCore;
+
+namespace CelebrityGuessingGame.Services;
 
 public class DatabaseService : DbContext
 {
-    public DbSet<User> Users { get; set; }
+    public required DbSet<User> Users { get; set; }
 
     public DatabaseService(DbContextOptions<DatabaseService> options) : base(options) { }
 

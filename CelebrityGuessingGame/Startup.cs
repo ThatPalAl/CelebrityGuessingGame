@@ -1,3 +1,6 @@
+using CelebrityGuessingGame.Services;
+using Microsoft.EntityFrameworkCore;
+
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
@@ -22,6 +25,7 @@ public class Startup
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
+
         app.UseRouting();
         app.UseAuthorization();
 

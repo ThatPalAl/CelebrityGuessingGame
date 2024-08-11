@@ -1,6 +1,9 @@
-public class Celebrity
+namespace CelebrityGuessingGame.Models
 {
-    public string Name { get; set; }
-    public string Occupation { get; set; }
-    public string Nationality { get; set; }
+    public class Celebrity
+    {
+        public required string Name { get; set; }
+        public string? Occupation { get; set; }
+        public string? Nationality { get; set; }
+    }
 }
