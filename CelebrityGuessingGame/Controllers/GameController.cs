@@ -32,7 +32,7 @@ namespace CelebrityGuessingGame.Controllers
                     return RedirectToAction("Index");
                 }
 
-                var apiKey = "FeR4Vt4gGCeFv4Z0Lg4MlMHMRcNtvgMIqQ0T2w9u";
+                var apiKey = "?";
                 var celebrity = await _apiService.GetCelebrityByNameAsync(apiKey, name);
 
                 if (celebrity != null)
