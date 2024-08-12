@@ -14,23 +14,41 @@ namespace CelebrityGuessingGame.Services
         {
             _httpClient = httpClient;
         }
-
-        public async Task<List<Celebrity>?> GetCelebritiesAsync(string apiKey)
+        public async Task<Celebrity?> GetCelebrityByNameAsync(string apiKey, string name)
         {
-            _httpClient.DefaultRequestHeaders.Clear();
-            _httpClient.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
+            try
+            {
+                var encodedName = Uri.EscapeDataString(name);
+                var requestUrl = $"https://api.api-ninjas.com/v1/celebrity?name={encodedName}&X-Api-Key={Uri.EscapeDataString(apiKey)}";
 
-            var response = await _httpClient.GetAsync("https://api.api-ninjas.com/v1/celebrity");
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<List<Celebrity>>(content);
+                Console.WriteLine("Constructed URL: " + requestUrl);
+                
+
+                var response = await _httpClient.GetAsync(requestUrl);
+                Console.WriteLine("Sent request to API.");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("API Response: " + content);
+                    var celebrities = JsonConvert.DeserializeObject<List<Celebrity>>(content);
+                    return celebrities?.FirstOrDefault();
+                }
+                else
+                {
+                    Console.WriteLine("API Error: " + response.StatusCode);
+                    Console.WriteLine("API Response Status Code: " + response.StatusCode);
+                    Console.WriteLine("API Response Headers: " + response.Headers);
+                    return null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Log the error or return an empty list if there's a problem with the API call
-                return new List<Celebrity>();
+                Console.WriteLine("Exception occurred: " + ex.Message);
+                return null;
             }
         }
+
+
     }
 }

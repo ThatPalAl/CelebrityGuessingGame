@@ -1,5 +1,6 @@
 using CelebrityGuessingGame.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 public class Startup
 {
@@ -9,14 +10,14 @@ public class Startup
         services.AddHttpClient<ApiService>();
         services.AddDbContext<DatabaseService>(options =>
             options.UseSqlite("Data Source=CelebrityGuessingGame.db"));
-        
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
     {
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
+            logger.LogInformation("In Development environment");
         }
         else
         {
@@ -28,6 +29,7 @@ public class Startup
         app.UseStaticFiles();
 
         app.UseRouting();
+
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
@@ -36,5 +38,8 @@ public class Startup
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
         });
+
+
+        logger.LogInformation("Application Started");
     }
 }

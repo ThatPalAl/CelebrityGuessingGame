@@ -1,20 +1,16 @@
-@model List<CelebrityGuessingGame.Models.Celebrity>
-
-<h1>Select a Celebrity</h1>
-
-@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-{
-    <p style="color: red;">@ViewBag.ErrorMessage</p>
+@{
+    ViewData["Title"] = "Home Page";
 }
-else
+
+<h1>Welcome to the Celebrity Guessing Game!</h1>
+
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"]?.ToString()))
 {
-    <form method="post" asp-controller="Game" asp-action="ChooseCelebrity">
-        <select id="celebrities" name="selectedCelebrity">
-            @foreach (var celebrity in Model)
-            {
-                <option value="@celebrity.Name">@celebrity.Name</option>
-            }
-        </select>
-        <button type="submit">Start Game</button>
-    </form>
+    <p style="color: red;">@TempData["ErrorMessage"]</p>
 }
+
+<form method="get" asp-controller="Game" asp-action="FetchCelebrity">
+    <label for="celebrityName">Enter a Celebrity's Name:</label>
+    <input type="text" id="celebrityName" name="name" required />
+    <button type="submit">Fetch Celebrity</button>
+</form>

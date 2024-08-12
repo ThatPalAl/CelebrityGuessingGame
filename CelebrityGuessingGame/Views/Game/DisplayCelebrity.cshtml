@@ -1,0 +1,18 @@
+@model CelebrityGuessingGame.Models.Celebrity
+
+<h1>Celebrity Details</h1>
+
+@if (Model != null)
+{
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Gender:</strong> @Model.Gender</p>
+    <p><strong>Age:</strong> @Model.Age</p>
+    <p><strong>Occupation:</strong> @string.Join(", ", @Model.Occupation)</p>
+    <p><strong>Net Worth:</strong> @Model.NetWorth</p>
+}
+else
+{
+    <p style="color: red;">No celebrity data available.</p>
+}
+
+<a href="/Game/Index">Back to Home</a>
