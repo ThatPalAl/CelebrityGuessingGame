@@ -1,0 +1,30 @@
+@model IEnumerable<CelebrityGuessingGame.Models.Question>
+
+@{
+    ViewData["Title"] = "Manage Questions";
+}
+
+<h1>Manage Questions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question Text</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.QuestionText</td>
+                <td>
+                    <a asp-action="EditQuestion" asp-route-id="@question.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="DeleteQuestion" asp-route-id="@question.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="CreateQuestion" class="btn btn-primary">Create New Question</a>
