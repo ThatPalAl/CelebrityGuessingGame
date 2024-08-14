@@ -27,7 +27,7 @@ namespace CelebrityGuessingGame.Controllers
                     new Option { OptionText = "Short" } 
                 } 
             },
-            // Add more questions as needed...
+            //More questions needed here
         };
 
         public IActionResult Index()
@@ -44,10 +44,9 @@ namespace CelebrityGuessingGame.Controllers
         [HttpPost]
         public IActionResult SubmitAnswers(GameViewModel model)
         {
-            // Process the answers (e.g., store them, analyze them, etc.)
-            // For now, we'll just redirect to the result page with a dummy result.
+            //Processing answers to be implemented
 
-            return RedirectToAction("Result", new { result = "Tom Cruise" });
+            return RedirectToAction("Result", new { result = "Michael Jackson" });
         }
 
         public IActionResult Result(string result)

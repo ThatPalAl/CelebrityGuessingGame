@@ -4,7 +4,7 @@ namespace CelebrityGuessingGame.Models
 {
     public class Celebrity
     {
-        public int Id { get; set; }  // This property acts as the primary key
+        public int Id { get; set; } 
 
         public string Name { get; set; }
         public string Gender { get; set; }

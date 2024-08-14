@@ -10,7 +10,6 @@
 <form method="post" asp-controller="Game" asp-action="SubmitAnswers">
     @for (int i = 0; i < Model.Questions.Count; i++)
     {
-        <!-- Progress Bar -->
         <div class="progress mb-4">
             <div class="progress-bar" role="progressbar" style="width:@((i + 1) * 100 / Model.Questions.Count)%;" aria-valuenow="@(i + 1)" aria-valuemin="0" aria-valuemax="@Model.Questions.Count">
                 @((i + 1) * 100 / Model.Questions.Count)%

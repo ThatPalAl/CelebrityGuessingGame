@@ -42,7 +42,7 @@ namespace CelebrityGuessingGame.Services
                 .WithMany()
                 .HasForeignKey(a => a.SelectedOptionId);
 
-            // Seed data
+            
             modelBuilder.Entity<Question>().HasData(
                 new Question { Id = 1, QuestionText = "Is the celebrity male?" },
                 new Question { Id = 2, QuestionText = "Is the person tall, medium, or short?" },
